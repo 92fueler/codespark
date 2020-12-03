@@ -14,7 +14,7 @@ const ProblemPage = ({ match }) => {
     fetchProblem();
   }, [match.params.id]);
 
-  const { id, name, desc } = problem;
+  const { id, title, desc } = problem;
   return (
     <Container fluid>
       <Link className="btn btn-light my-3" to="/">
@@ -23,7 +23,7 @@ const ProblemPage = ({ match }) => {
       <Row>
         <Col xs sm={12} md lg={5}>
           <h2>
-            {id}. {name}
+            {id}. {title}
           </h2>
           <p style={{ lineHeight: "30px" }}>{desc}</p>
         </Col>

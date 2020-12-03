@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Badge } from "react-bootstrap";
 
 const Problem = (props) => {
-  const { id, name, difficulty } = props.problem;
+  const { id, title, difficulty } = props.problem;
   return (
     <tr>
       <td>{id}</td>
       <td>
-        <Link to={`/problem/${id}`}>{name}</Link>
+        <Link to={`/problem/${id}`}>{title}</Link>
       </td>
       <td>
         <Badge

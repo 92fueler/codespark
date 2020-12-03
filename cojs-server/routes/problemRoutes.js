@@ -25,7 +25,8 @@ router.get(
     if (problem) {
       res.json(problem);
     } else {
-      res.status(404).json({ message: "problem not found" });
+      res.status(404);
+      throw new Error("problem not found");
     }
   })
 );
