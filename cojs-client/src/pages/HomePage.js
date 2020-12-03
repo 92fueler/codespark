@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Table } from "react-bootstrap";
+
 import Problem from "../components/Problem";
-import problems from "../problems";
+// import problems from "../problems";
 
 const HomePage = () => {
+  const [problems, setProblems] = useState([]);
+  useEffect(() => {
+    const fetchProblems = async () => {
+      const { data } = await axios.get("/api/v1/problems");
+      setProblems(data);
+    };
+    fetchProblems();
+  }, []);
+
   return (
     <div>
       <Table responsive borderless hover>
