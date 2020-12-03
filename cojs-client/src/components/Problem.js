@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Badge } from "react-bootstrap";
 
 const Problem = (props) => {
@@ -6,7 +7,9 @@ const Problem = (props) => {
   return (
     <tr>
       <td>{id}</td>
-      <td>{name}</td>
+      <td>
+        <Link to={`/problem/${id}`}>{name}</Link>
+      </td>
       <td>
         <Badge
           className="px-2 py-2 align-me"

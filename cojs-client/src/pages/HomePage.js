@@ -6,19 +6,25 @@ import problems from "../problems";
 const HomePage = () => {
   return (
     <div>
-      <Table borderless hover>
-        <thread>
+      <Table responsive borderless hover>
+        <thead>
           <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Difficulty</th>
+            <th>
+              <strong>#</strong>
+            </th>
+            <th>
+              <strong>Title</strong>
+            </th>
+            <th>
+              <strong>Difficulty</strong>
+            </th>
           </tr>
-          <tbody>
-            {problems.map((problem) => (
-              <Problem key={problem.id} problem={problem} />
-            ))}
-          </tbody>
-        </thread>
+        </thead>
+        <tbody>
+          {problems.map((problem) => (
+            <Problem key={problem.id} problem={problem} />
+          ))}
+        </tbody>
       </Table>
     </div>
   );
