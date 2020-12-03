@@ -4,9 +4,9 @@
   "description": "collaborative online judge system server",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
-  "author": "",
+  "author": "Joyce Wu",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
