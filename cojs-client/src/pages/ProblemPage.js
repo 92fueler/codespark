@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import Editor from "../components/Editor";
-import problems from "../problems";
 
 const ProblemPage = ({ match }) => {
-  const problem = problems.find(
-    (problem) => problem.id === parseInt(match.params.id)
-  );
+  const [problem, setProblem] = useState({});
+  useEffect(() => {
+    const fetchProblem = async () => {
+      const { data } = await axios.get(`/api/v1/problems/${match.params.id}`);
+      setProblem(data);
+    };
+    fetchProblem();
+  }, [match.params.id]);
+
   const { id, name, desc } = problem;
   return (
     <Container fluid>
