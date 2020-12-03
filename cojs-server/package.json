@@ -3,13 +3,20 @@
   "version": "1.0.0",
   "description": "collaborative online judge system server",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix ../cojs-client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Joyce Wu",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
     "nodemon": "^2.0.6"
   }
 }

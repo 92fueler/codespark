@@ -34,4 +34,4 @@ You may assume that there will be only one unique solution.`,
   },
 ];
 
-module.exports = problems;
+export default problems;
