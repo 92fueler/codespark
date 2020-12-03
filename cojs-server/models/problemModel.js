@@ -1,4 +1,6 @@
-const userSchema = mongoose.Schema(
+import mongoose from "mongoose";
+
+const problemSchema = mongoose.Schema(
   {
     id: {
       type: Number,
@@ -24,6 +26,6 @@ const userSchema = mongoose.Schema(
   }
 );
 
-const problemModel = mongoose.model("ProblemModel", userSchema);
+const Problem = mongoose.model("Problem", problemSchema);
 
-export default problemModel;
+export default Problem;
