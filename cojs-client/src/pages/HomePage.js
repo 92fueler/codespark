@@ -1,42 +1,47 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Table } from "react-bootstrap";
-
 import Problem from "../components/Problem";
-// import problems from "../problems";
+import { listProblems } from "../actions/problemActions";
 
 const HomePage = () => {
-  const [problems, setProblems] = useState([]);
+  const dispatch = useDispatch();
+
+  const problemList = useSelector((state) => state.problemList);
+  const { loading, error, problems } = problemList;
+
   useEffect(() => {
-    const fetchProblems = async () => {
-      const { data } = await axios.get("/api/v1/problems");
-      setProblems(data);
-    };
-    fetchProblems();
-  }, []);
+    dispatch(listProblems());
+  }, [dispatch]);
 
   return (
     <div>
-      <Table responsive borderless hover>
-        <thead>
-          <tr>
-            <th>
-              <strong>#</strong>
-            </th>
-            <th>
-              <strong>Title</strong>
-            </th>
-            <th>
-              <strong>Difficulty</strong>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {problems.map((problem) => (
-            <Problem key={problem.id} problem={problem} />
-          ))}
-        </tbody>
-      </Table>
+      {loading ? (
+        <h2>loading ... </h2>
+      ) : error ? (
+        <h2>{error}</h2>
+      ) : (
+        <Table responsive borderless hover>
+          <thead>
+            <tr>
+              <th>
+                <strong>#</strong>
+              </th>
+              <th>
+                <strong>Title</strong>
+              </th>
+              <th>
+                <strong>Difficulty</strong>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {problems.map((problem) => (
+              <Problem key={problem.id} problem={problem} />
+            ))}
+          </tbody>
+        </Table>
+      )}
     </div>
   );
 };
