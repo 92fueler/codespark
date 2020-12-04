@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table } from "react-bootstrap";
 import Problem from "../components/Problem";
 import { listProblems } from "../actions/problemActions";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -17,9 +19,9 @@ const HomePage = () => {
   return (
     <div>
       {loading ? (
-        <h2>loading ... </h2>
+        <Loader />
       ) : error ? (
-        <h2>{error}</h2>
+        <Message variant="danger">{error}</Message>
       ) : (
         <Table responsive borderless hover>
           <thead>
