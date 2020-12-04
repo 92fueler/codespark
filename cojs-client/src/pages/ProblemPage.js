@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 import Editor from "../components/Editor";
+import { listProblemDetails } from "../actions/problemActions";
 
 const ProblemPage = ({ match }) => {
-  const [problem, setProblem] = useState({});
+  const dispatch = useDispatch();
+
+  const problemDetails = useSelector((state) => state.problemDetails);
+
+  const { loading, error, problem } = problemDetails;
+
   useEffect(() => {
-    const fetchProblem = async () => {
-      const { data } = await axios.get(`/api/v1/problems/${match.params.id}`);
-      setProblem(data);
-    };
-    fetchProblem();
-  }, [match.params.id]);
+    dispatch(listProblemDetails(match.params.id));
+  }, [dispatch, match.params.id]);
 
   const { id, title, desc } = problem;
   return (
@@ -20,17 +24,23 @@ const ProblemPage = ({ match }) => {
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
-      <Row>
-        <Col xs sm={12} md lg={5}>
-          <h2>
-            {id}. {title}
-          </h2>
-          <p style={{ lineHeight: "30px" }}>{desc}</p>
-        </Col>
-        <Col>
-          <Editor />
-        </Col>
-      </Row>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Row>
+          <Col xs sm={12} md lg={5}>
+            <h2>
+              {id}. {title}
+            </h2>
+            <p style={{ lineHeight: "30px" }}>{desc}</p>
+          </Col>
+          <Col>
+            <Editor />
+          </Col>
+        </Row>
+      )}
     </Container>
   );
 };
