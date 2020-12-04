@@ -1,34 +1,19 @@
 import express from "express";
-import asyncHandler from "express-async-handler";
-import Problem from "../models/problemModel.js";
-
+import {
+  getProblems,
+  getProblemById,
+} from "../controllers/problemController.js";
 const router = express.Router();
 
 // @desc fetch all problems
 // @route GET /api/v1/problems
 // @access public
-router.get(
-  "/",
-  asyncHandler(async (req, res) => {
-    const problems = await Problem.find({});
-    res.json(problems);
-  })
-);
+// router.route("/").get(getProblems);
+router.get("/", getProblems);
 
 // @desc fetch single problem
 // @route GET /api/v1/problems/:id
 // @access public
-router.get(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const problem = await Problem.findOne({ id: parseInt(req.params.id) });
-    if (problem) {
-      res.json(problem);
-    } else {
-      res.status(404);
-      throw new Error("problem not found");
-    }
-  })
-);
+router.route("/:id").get(getProblemById);
 
 export default router;
