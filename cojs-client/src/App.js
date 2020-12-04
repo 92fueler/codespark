@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import ProblemPage from "./pages/ProblemPage";
+import SigninPage from "./pages/SigninPage";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-          <Route path="/" component={HomePage} exact />
+          <Route path="/signin" component={SigninPage} />
           <Route path="/problem/:id" component={ProblemPage} />
+          <Route path="/" component={HomePage} exact />
         </Container>
       </main>
       <Footer />
