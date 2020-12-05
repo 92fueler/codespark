@@ -5,13 +5,20 @@ import {
   problemListReducer,
   problemDetailsReducer,
 } from "./reducers/problemReducer";
-import { userSigninReducer, userSignupReducer } from "./reducers/userReducer";
+import {
+  userSigninReducer,
+  userSignupReducer,
+  userUpdateProfileReducer,
+  userDetailsReducer,
+} from "./reducers/userReducer";
 
 const reducer = combineReducers({
   problemList: problemListReducer,
   problemDetails: problemDetailsReducer,
   userSignin: userSigninReducer,
   userSignup: userSignupReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

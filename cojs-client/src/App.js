@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import ProblemPage from "./pages/ProblemPage";
 import SigninPage from "./pages/SigninPage";
 import SignupPage from "./pages/SignupPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Container>
           <Route path="/signin" component={SigninPage} />
           <Route path="/signup" component={SignupPage} />
+          <Route path="/profile" component={ProfilePage} />
           <Route path="/problem/:id" component={ProblemPage} />
           <Route path="/" component={HomePage} exact />
         </Container>

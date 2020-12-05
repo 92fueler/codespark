@@ -1,8 +1,12 @@
 import express from "express";
 import {
   authUser,
-  getUserProfile,
   registerUser,
+  getUserProfile,
+  updateUserProfile,
+  getUsers,
+  deleteUser,
+  updateUser,
 } from "../controllers/userController.js";
 import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
@@ -20,6 +24,9 @@ router.post("/signin", authUser);
 // @desc user profile
 // @route GET /api/v1/users/signin
 // @access private
-router.route("/profile").get(protect, getUserProfile);
+router
+  .route("/profile")
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
 
 export default router;
