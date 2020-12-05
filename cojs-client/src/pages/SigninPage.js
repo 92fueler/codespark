@@ -58,7 +58,7 @@ const SigninPage = ({ location, history }) => {
             }}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="secondary">
           Sign In
         </Button>
       </Form>
@@ -66,8 +66,8 @@ const SigninPage = ({ location, history }) => {
       <Row className="py-3">
         <Col>
           New User ?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Please Register here
+          <Link to={redirect ? `/signup?redirect=${redirect}` : "/signup"}>
+            Please sign up here
           </Link>
         </Col>
       </Row>
