@@ -9,6 +9,7 @@ import SigninPage from "./pages/SigninPage";
 import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import UserListPage from "./pages/UserListPage";
+import UserEditPage from "./pages/UserEditPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/profile" component={ProfilePage} />
           <Route path="/problem/:id" component={ProblemPage} />
           <Route path="/admin/userlist" component={UserListPage} />
+          <Route path="/admin/user/:id/edit" component={UserEditPage} />
           <Route path="/" component={HomePage} exact />
         </Container>
       </main>
