@@ -8,6 +8,7 @@ import ProblemPage from "./pages/ProblemPage";
 import SigninPage from "./pages/SigninPage";
 import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
+import UserListPage from "./pages/UserListPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" component={SignupPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/problem/:id" component={ProblemPage} />
+          <Route path="/admin/userlist" component={UserListPage} />
           <Route path="/" component={HomePage} exact />
         </Container>
       </main>
