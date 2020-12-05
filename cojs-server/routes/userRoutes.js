@@ -6,15 +6,17 @@ import {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
   updateUser,
 } from "../controllers/userController.js";
-import { protect } from "../middleware/authMiddleware.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 // @desc register a new user
 // @route POST /api/v1/users
+// @route GET /api/v1/users
 // @access public
-router.route("/").post(registerUser);
+router.route("/").post(registerUser).get(protect, admin, getUsers);
 
 // @desc Auth user & get token
 // @route POST /api/v1/users/signin
@@ -22,11 +24,18 @@ router.route("/").post(registerUser);
 router.post("/signin", authUser);
 
 // @desc user profile
-// @route GET /api/v1/users/signin
-// @access private
+// @access private/individual user
 router
   .route("/profile")
-  .get(protect, getUserProfile)
-  .put(protect, updateUserProfile);
+  .get(protect, getUserProfile) // @route GET /api/v1/users/profile
+  .put(protect, updateUserProfile); // @route PUT /api/v1/users/profile
+
+// @desc admin
+// @access private/Amind
+router
+  .route("/:id")
+  .delete(protect, admin, deleteUser) // @route DELETE /api/v1/users/:id
+  .get(protect, admin, getUserById) // @route GET /api/v1/users/:id
+  .put(protect, admin, updateUser); // @route PUT /api/v1/users
 
 export default router;
