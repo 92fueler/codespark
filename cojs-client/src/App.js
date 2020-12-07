@@ -10,6 +10,8 @@ import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
+import ProblemListPage from "./pages/ProblemListPage";
+import ProblemEditPage from "./pages/ProblemEditPage";
 
 function App() {
   return (
@@ -23,6 +25,13 @@ function App() {
           <Route path="/problem/:id" component={ProblemPage} />
           <Route path="/admin/userlist" component={UserListPage} />
           <Route path="/admin/user/:id/edit" component={UserEditPage} />
+          <Route path="/admin/problemlist" component={ProblemListPage} />
+          <Route
+            path="/admin/problemlist/:pageNumber"
+            component={ProblemListPage}
+          />
+          <Route path="/admin/problem/:id/edit" component={ProblemEditPage} />
+          <Route path="/page/:pagenumber" component={HomePage} />
           <Route path="/" component={HomePage} exact />
         </Container>
       </main>

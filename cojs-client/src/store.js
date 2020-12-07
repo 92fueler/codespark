@@ -4,6 +4,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   problemListReducer,
   problemDetailsReducer,
+  problemDeleteReducer,
+  problemCreateReducer,
+  problemUpdateReducer,
 } from "./reducers/problemReducer";
 import {
   userSigninReducer,
@@ -18,6 +21,9 @@ import {
 const reducer = combineReducers({
   problemList: problemListReducer,
   problemDetails: problemDetailsReducer,
+  problemDelete: problemDeleteReducer,
+  problemCreate: problemCreateReducer,
+  problemUpdate: problemUpdateReducer,
   userSignin: userSigninReducer,
   userSignup: userSignupReducer,
   userDetails: userDetailsReducer,
