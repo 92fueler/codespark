@@ -69,7 +69,7 @@ const ProblemEditPage = ({ match, history }) => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="title">
-              <Form.Label>title</Form.Label>
+              <Form.Label>Title</Form.Label>
               <Form.Control
                 type="name"
                 placeholder="Enter problem title"
@@ -79,9 +79,10 @@ const ProblemEditPage = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId="desc">
-              <Form.Label></Form.Label>
+              <Form.Label>Description</Form.Label>
               <Form.Control
                 type="desc"
+                as="textarea"
                 placeholder="Enter problem description"
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
@@ -92,13 +93,19 @@ const ProblemEditPage = ({ match, history }) => {
               <Form.Label>Difficulty</Form.Label>
               <Form.Control
                 type="text"
+                as="select"
                 placeholder="Enter problem difficulty"
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
-              ></Form.Control>
+              >
+                <option>easy</option>
+                <option>medium</option>
+                <option>hard</option>
+                <option>super</option>
+              </Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="secondary">
               Update
             </Button>
           </Form>

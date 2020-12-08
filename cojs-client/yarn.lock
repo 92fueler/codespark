@@ -2562,6 +2562,11 @@
     "mime-types" "~2.1.24"
     "negotiator" "0.6.2"
 
+"ace-builds@^1.4.12", "ace-builds@^1.4.6":
+  "integrity" "sha512-G+chJctFPiiLGvs3+/Mly3apXTcfgE45dT5yp12BcWZ1kUs+gm0qd3/fv4gsz6fVag4mM0moHVpjHDIgph6Psg=="
+  "resolved" "https://registry.npmjs.org/ace-builds/-/ace-builds-1.4.12.tgz"
+  "version" "1.4.12"
+
 "acorn-globals@^6.0.0":
   "integrity" "sha512-ZQl7LOWaF5ePqqcX4hLuv/bLXYQNfNWw2c0/yX/TsPRKamzHcTGQnlCjHT3TsmkOUVEPS3crCxiPfdzE/Trlhg=="
   "resolved" "https://registry.yarnpkg.com/acorn-globals/-/acorn-globals-6.0.0.tgz"
@@ -4680,6 +4685,11 @@
   dependencies:
     "address" "^1.0.1"
     "debug" "^2.6.0"
+
+"diff-match-patch@^1.0.4":
+  "integrity" "sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw=="
+  "resolved" "https://registry.npmjs.org/diff-match-patch/-/diff-match-patch-1.0.5.tgz"
+  "version" "1.0.5"
 
 "diff-sequences@^26.6.2":
   "integrity" "sha512-Mv/TDa3nZ9sbc5soK+OoA74BsS3mL37yixCvUAQkiuA4Wz6YtwP/K47n2rv2ovzHZvoiQeA5FTQOschKkEwB0Q=="
@@ -7790,6 +7800,16 @@
   "resolved" "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz"
   "version" "3.0.0"
 
+"lodash.get@^4.4.2":
+  "integrity" "sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk="
+  "resolved" "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
+  "version" "4.4.2"
+
+"lodash.isequal@^4.5.0":
+  "integrity" "sha1-QVxEePK8wwEgwizhDtMib30+GOA="
+  "resolved" "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
+  "version" "4.5.0"
+
 "lodash.memoize@^4.1.2":
   "integrity" "sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4="
   "resolved" "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz"
@@ -10045,6 +10065,17 @@
     "minimist" "^1.2.0"
     "strip-json-comments" "~2.0.1"
 
+"react-ace@^9.2.1":
+  "integrity" "sha512-2arIeMER/W6/h+QGHs0YJ0pEJo5AmBOUs/R72Poa6eXSOSTpJPp/WkwD/KE7BgNy9vZ7YjlbqA+2ZcoVf6AjsQ=="
+  "resolved" "https://registry.npmjs.org/react-ace/-/react-ace-9.2.1.tgz"
+  "version" "9.2.1"
+  dependencies:
+    "ace-builds" "^1.4.6"
+    "diff-match-patch" "^1.0.4"
+    "lodash.get" "^4.4.2"
+    "lodash.isequal" "^4.5.0"
+    "prop-types" "^15.7.2"
+
 "react-app-polyfill@^2.0.0":
   "integrity" "sha512-0sF4ny9v/B7s6aoehwze9vJNWcmCemAUYBVasscVr92+UYiEqDXOxfKjXN685mDaMRNF3WdhHQs76oTODMocFA=="
   "resolved" "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-2.0.0.tgz"
@@ -10111,7 +10142,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@*", "react-dom@^17.0.1", "react-dom@>=16.3.0", "react-dom@>=16.6.0", "react-dom@>=16.8.0":
+"react-dom@*", "react-dom@^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react-dom@^17.0.1", "react-dom@>=16.3.0", "react-dom@>=16.6.0", "react-dom@>=16.8.0":
   "integrity" "sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug=="
   "resolved" "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz"
   "version" "17.0.1"
@@ -10283,7 +10314,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0", "react@^16.8.3 || ^17", "react@^17.0.1", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16.3.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8.0", "react@17.0.1":
+"react@*", "react@^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0", "react@^16.8.3 || ^17", "react@^17.0.1", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16.3.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8.0", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz"
   "version" "17.0.1"

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Editor from "../components/Editor";
@@ -29,17 +29,13 @@ const ProblemPage = ({ match }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          <Col xs sm={12} md lg={5}>
-            <h2>
-              {id}. {title}
-            </h2>
-            <p style={{ lineHeight: "30px" }}>{desc}</p>
-          </Col>
-          <Col>
-            <Editor />
-          </Col>
-        </Row>
+        <div>
+          <h2>
+            {id}. {title}
+          </h2>
+          <p>{desc}</p>
+          <Editor problem={problem} />
+        </div>
       )}
     </Container>
   );

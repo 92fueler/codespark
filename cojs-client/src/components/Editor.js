@@ -1,8 +1,24 @@
 import React from "react";
+import AceEditor from "react-ace";
 
-const Editor = () => {
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/ext-language_tools";
+
+function onChange(newValue) {
+  console.log("change", newValue);
+}
+
+const Editor = (props) => {
+  const { id } = props.problem;
   return (
-    <div style={{ backgroundColor: "pink" }}>this is editor component</div>
+    <AceEditor
+      mode="javascript"
+      theme="github"
+      onChange={onChange}
+      name={id}
+      editorProps={{ $blockScrolling: true }}
+    />
   );
 };
 
