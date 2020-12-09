@@ -10,14 +10,17 @@ import { PROBLEM_UPDATE_RESET } from "../constants/problemConstants";
 
 const ProblemEditPage = ({ match, history }) => {
   const problemId = match.params.id;
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [difficulty, setDifficulty] = useState("");
 
   const dispatch = useDispatch();
 
   const problemDetails = useSelector((state) => state.problemDetails);
   const { loading, error, problem } = problemDetails;
+
+  const [updatedTitle, setUpdatedTitle] = useState(problem.title);
+  const [updatedDesc, setUpdatedDesc] = useState(problem.desc);
+  const [updatedDifficulty, setUpdatedDifficulty] = useState(
+    problem.difficulty
+  );
 
   const problemUpdate = useSelector((state) => state.problemUpdate);
   const {
@@ -29,14 +32,14 @@ const ProblemEditPage = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PROBLEM_UPDATE_RESET });
-      history.push("/admin/pv1/roblemlist");
+      history.push("/admin/v1/problemlist");
     } else {
-      if (!problem.name || problem.id !== problemId) {
+      if (!problem.title || problem.id !== problemId) {
         dispatch(listProblemDetails(problemId));
       } else {
-        setTitle(problem.title);
-        setDesc(problem.desc);
-        setDifficulty(problem.difficulty);
+        setUpdatedTitle(problem.title);
+        setUpdatedDesc(problem.desc);
+        setUpdatedDifficulty(problem.difficulty);
       }
     }
   }, [dispatch, history, problemId, problem, successUpdate]);
@@ -46,16 +49,16 @@ const ProblemEditPage = ({ match, history }) => {
     dispatch(
       updateProblem({
         id: problemId,
-        title,
-        desc,
-        difficulty,
+        title: updatedTitle,
+        desc: updatedDesc,
+        difficulty: updatedDifficulty,
       })
     );
   };
 
   return (
     <>
-      <Link to="/admin/v1/problemlist" className="btn btn-light my-3">
+      <Link to="/admin/problemlist" className="btn btn-light my-3">
         Go Back
       </Link>
       <FormContainer>
@@ -68,13 +71,17 @@ const ProblemEditPage = ({ match, history }) => {
           <Message variant="danger">{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
+            <Form.Group controlId="problemId">
+              <Form.Label>ID</Form.Label>
+              <Form.Control type="text" value={problemId}></Form.Control>
+            </Form.Group>
+
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
               <Form.Control
-                type="name"
-                placeholder="Enter problem title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                type="title"
+                value={updatedTitle}
+                onChange={(e) => setUpdatedTitle(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -84,8 +91,8 @@ const ProblemEditPage = ({ match, history }) => {
                 type="desc"
                 as="textarea"
                 placeholder="Enter problem description"
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
+                value={updatedDesc}
+                onChange={(e) => setUpdatedDesc(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -95,8 +102,8 @@ const ProblemEditPage = ({ match, history }) => {
                 type="text"
                 as="select"
                 placeholder="Enter problem difficulty"
-                value={difficulty}
-                onChange={(e) => setDifficulty(e.target.value)}
+                value={updatedDifficulty}
+                onChange={(e) => setUpdatedDifficulty(e.target.value)}
               >
                 <option>easy</option>
                 <option>medium</option>

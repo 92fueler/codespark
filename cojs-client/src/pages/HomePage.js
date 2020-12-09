@@ -5,19 +5,16 @@ import Problem from "../components/Problem";
 import { listProblems } from "../actions/problemActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import Paginate from "../components/Paginate";
 
 const HomePage = ({ match }) => {
-  const pageNumber = match.params.pageNumber || 1;
-
   const dispatch = useDispatch();
 
   const problemList = useSelector((state) => state.problemList);
-  const { loading, error, problems, page, pages } = problemList;
+  const { loading, error, problems } = problemList;
 
   useEffect(() => {
-    dispatch(listProblems(pageNumber));
-  }, [dispatch, pageNumber]);
+    dispatch(listProblems());
+  }, [dispatch]);
 
   return (
     <div>
@@ -45,7 +42,6 @@ const HomePage = ({ match }) => {
               <Problem key={problem.id} problem={problem} />
             ))}
           </tbody>
-          <Paginate pages={pages} page={page} />
         </Table>
       )}
     </div>

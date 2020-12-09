@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import Paginate from "../components/Paginate";
+// import Paginate from "../components/Paginate";
 import {
   listProblems,
   deleteProblem,
@@ -13,12 +13,13 @@ import {
 import { PROBLEM_CREATE_RESET } from "../constants/problemConstants";
 
 const ProblemListPage = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1;
+  // const pageNumber = match.params.pageNumber || 1;
 
   const dispatch = useDispatch();
 
   const problemList = useSelector((state) => state.problemList);
-  const { loading, error, problems, page, pages } = problemList;
+  // const { loading, error, problems, page, pages } = problemList;
+  const { loading, error, problems } = problemList;
 
   const problemDelete = useSelector((state) => state.problemDelete);
   const {
@@ -46,9 +47,9 @@ const ProblemListPage = ({ history, match }) => {
     }
 
     if (successCreate) {
-      history.push(`/admin/problem/${createdProblem._id}/edit`);
+      history.push(`/admin/problem/${createdProblem.id}/edit`);
     } else {
-      dispatch(listProblems("", pageNumber));
+      dispatch(listProblems());
     }
   }, [
     dispatch,
@@ -57,7 +58,6 @@ const ProblemListPage = ({ history, match }) => {
     successDelete,
     successCreate,
     createdProblem,
-    pageNumber,
   ]);
 
   const deleteHandler = (id) => {
@@ -78,7 +78,7 @@ const ProblemListPage = ({ history, match }) => {
         </Col>
         <Col className="text-right">
           <Button className="my-3" onClick={createProblemHandler}>
-            <i className="fas fa-plus"></i> Add Problem
+            <i className="fas fa-plus mr-1"></i> Create Problem
           </Button>
         </Col>
       </Row>
@@ -92,7 +92,7 @@ const ProblemListPage = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Table striped bordered hover responsive className="table-sm">
+          <Table striped bordered hover responsive size="xl">
             <thead>
               <tr>
                 <th>
@@ -114,12 +114,12 @@ const ProblemListPage = ({ history, match }) => {
             </thead>
             <tbody>
               {problems.map((problem) => (
-                <tr key={problem._id}>
-                  <td>{problem.id}</td>
+                <tr key={problem.id}>
+                  <td>{problem.id}.</td>
                   <td>{problem.title}</td>
-                  <td>${problem.desc}</td>
+                  <td style={{ width: "600px" }}>{problem.desc}</td>
                   <td>{problem.difficulty}</td>
-                  <td>
+                  <td style={{ width: "140px" }}>
                     <LinkContainer to={`/admin/problem/${problem.id}/edit`}>
                       <Button variant="light" className="btn-sm">
                         <i className="fas fa-edit"></i>
@@ -127,7 +127,7 @@ const ProblemListPage = ({ history, match }) => {
                     </LinkContainer>
                     <Button
                       variant="danger"
-                      className="btn-sm"
+                      className="btn-sm ml-4"
                       onClick={() => deleteHandler(problem.id)}
                     >
                       <i className="fas fa-trash"></i>
@@ -137,7 +137,7 @@ const ProblemListPage = ({ history, match }) => {
               ))}
             </tbody>
           </Table>
-          <Paginate pages={pages} page={page} isAdmin={true} />
+          {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
         </>
       )}
     </>

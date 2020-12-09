@@ -41,21 +41,27 @@ const deleteProblem = asyncHandler(async (req, res) => {
 // @access private/admin
 // TODO: need to rewrite this function
 const createProblem = asyncHandler(async (req, res) => {
-  const { id, title, desc, difficulty } = req.body;
-  const problemById = await Problem.findOne({ id: id });
-  const problemByTitle = await Problem.findOne({ title: title });
-  if (problemById) {
-    throw Error("Problem id is taken");
-  }
-  if (problemByTitle) {
-    throw Error("Problem title exists");
-  }
+  // const { id, title, desc, difficulty } = req.body;
+  // const problemById = await Problem.findOne({ id: id });
+  // const problemByTitle = await Problem.findOne({ title: title });
+  // if (problemById) {
+  //   throw Error("Problem id is taken");
+  // }
+  // if (problemByTitle) {
+  //   throw Error("Problem title exists");
+  // }
 
+  // const problem = new Problem({
+  //   id: id,
+  //   title: title,
+  //   desc: desc,
+  //   difficulty: difficulty,
+  // });
   const problem = new Problem({
-    id: id,
-    title: title,
-    desc: desc,
-    difficulty: difficulty,
+    id: 0,
+    title: "Enter new problem title",
+    desc: "Enter new problem description",
+    difficulty: "Select new prblem difficulty",
   });
   if (problem) {
     const createdProblem = await problem.save();

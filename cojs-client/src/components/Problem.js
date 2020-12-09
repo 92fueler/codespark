@@ -6,7 +6,7 @@ const Problem = (props) => {
   const { id, title, difficulty } = props.problem;
   return (
     <tr>
-      <td>{id}</td>
+      <td>{id}.</td>
       <td>
         <Link to={`/problem/${id}`}>{title}</Link>
       </td>

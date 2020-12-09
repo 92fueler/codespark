@@ -41,7 +41,7 @@ export const listProblems = () => async (dispatch) => {
 export const listProblemDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PROBLEM_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/v1/problems//${id}`);
+    const { data } = await axios.get(`/api/v1/problems/${id}`);
     dispatch({
       type: PROBLEM_DETAILS_SUCCESS,
       payload: data,
