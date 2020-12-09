@@ -2,18 +2,18 @@ import express from "express";
 import {
   getProblems,
   getProblemById,
+  deleteProblem,
+  createProblem,
+  updateProblem,
 } from "../controllers/problemController.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-// @desc fetch all problems
-// @route GET /api/v1/problems
-// @access public
-// router.route("/").get(getProblems);
 router.get("/", getProblems);
+router.route("/").post(protect, admin, createProblem);
 
-// @desc fetch single problem
-// @route GET /api/v1/problems/:id
-// @access public
-router.route("/:id").get(getProblemById);
+router.get("/:id", getProblemById);
+router.route("/:id").delete(protect, admin, deleteProblem);
+router.route("/:id").put(protect, admin, updateProblem);
 
 export default router;
