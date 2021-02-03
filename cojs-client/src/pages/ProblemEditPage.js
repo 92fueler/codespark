@@ -1,51 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import FormContainer from "../components/FormContainer";
-import { listProblemDetails, updateProblem } from "../actions/problemActions";
-import { PROBLEM_UPDATE_RESET } from "../constants/problemConstants";
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import Loader from '../components/Loader'
+import FormContainer from '../components/FormContainer'
+import { listProblemDetails, updateProblem } from '../actions/problemActions'
+import { PROBLEM_UPDATE_RESET } from '../constants/problemConstants'
 
 const ProblemEditPage = ({ match, history }) => {
-  const problemId = match.params.id;
+  const problemId = parseInt(match.params.id)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const problemDetails = useSelector((state) => state.problemDetails);
-  const { loading, error, problem } = problemDetails;
+  const problemDetails = useSelector((state) => state.problemDetails)
+  const { loading, error, problem } = problemDetails
 
-  const [updatedTitle, setUpdatedTitle] = useState(problem.title);
-  const [updatedDesc, setUpdatedDesc] = useState(problem.desc);
-  const [updatedDifficulty, setUpdatedDifficulty] = useState(
-    problem.difficulty
-  );
+  const [updatedTitle, setUpdatedTitle] = useState(problem.title)
+  const [updatedDesc, setUpdatedDesc] = useState(problem.desc)
+  const [updatedDifficulty, setUpdatedDifficulty] = useState(problem.difficulty)
 
-  const problemUpdate = useSelector((state) => state.problemUpdate);
+  const problemUpdate = useSelector((state) => state.problemUpdate)
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = problemUpdate;
+  } = problemUpdate
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: PROBLEM_UPDATE_RESET });
-      history.push("/admin/v1/problemlist");
+      dispatch({ type: PROBLEM_UPDATE_RESET })
+      history.push('/admin/v1/problemlist')
     } else {
-      if (!problem.title || problem.id !== problemId) {
-        dispatch(listProblemDetails(problemId));
+      console.log(problem.id)
+      if (!problem.title || parseInt(problem.id) !== problemId) {
+        dispatch(listProblemDetails(problemId))
       } else {
-        setUpdatedTitle(problem.title);
-        setUpdatedDesc(problem.desc);
-        setUpdatedDifficulty(problem.difficulty);
+        setUpdatedTitle(problem.title)
+        setUpdatedDesc(problem.desc)
+        setUpdatedDifficulty(problem.difficulty)
       }
     }
-  }, [dispatch, history, problemId, problem, successUpdate]);
+  }, [dispatch, history, problemId, problem, successUpdate])
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     dispatch(
       updateProblem({
         id: problemId,
@@ -53,8 +52,8 @@ const ProblemEditPage = ({ match, history }) => {
         desc: updatedDesc,
         difficulty: updatedDifficulty,
       })
-    );
-  };
+    )
+  }
 
   return (
     <>
@@ -90,7 +89,6 @@ const ProblemEditPage = ({ match, history }) => {
               <Form.Control
                 type="desc"
                 as="textarea"
-                placeholder="Enter problem description"
                 value={updatedDesc}
                 onChange={(e) => setUpdatedDesc(e.target.value)}
               ></Form.Control>
@@ -101,7 +99,6 @@ const ProblemEditPage = ({ match, history }) => {
               <Form.Control
                 type="text"
                 as="select"
-                placeholder="Enter problem difficulty"
                 value={updatedDifficulty}
                 onChange={(e) => setUpdatedDifficulty(e.target.value)}
               >
@@ -119,7 +116,7 @@ const ProblemEditPage = ({ match, history }) => {
         )}
       </FormContainer>
     </>
-  );
-};
+  )
+}
 
-export default ProblemEditPage;
+export default ProblemEditPage

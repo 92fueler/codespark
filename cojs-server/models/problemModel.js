@@ -1,7 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const problemSchema = mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
     id: {
       type: Number,
       required: true,
@@ -24,8 +29,8 @@ const problemSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
-const Problem = mongoose.model("Problem", problemSchema);
+const Problem = mongoose.model('Problem', problemSchema)
 
-export default Problem;
+export default Problem

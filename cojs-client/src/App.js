@@ -1,19 +1,19 @@
-import React from "react";
-import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import HomePage from "./pages/HomePage";
-import ProblemPage from "./pages/ProblemPage";
-import SigninPage from "./pages/SigninPage";
-import SignupPage from "./pages/SignupPage";
-import ProfilePage from "./pages/ProfilePage";
-import UserListPage from "./pages/UserListPage";
-import UserEditPage from "./pages/UserEditPage";
-import ProblemListPage from "./pages/ProblemListPage";
-import ProblemEditPage from "./pages/ProblemEditPage";
+import React from 'react'
+import { Container } from 'react-bootstrap'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import ProblemPage from './pages/ProblemPage'
+import SigninPage from './pages/SigninPage'
+import SignupPage from './pages/SignupPage'
+import ProfilePage from './pages/ProfilePage'
+import UserListPage from './pages/UserListPage'
+import UserEditPage from './pages/UserEditPage'
+import ProblemListPage from './pages/ProblemListPage'
+import ProblemEditPage from './pages/ProblemEditPage'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Header />
@@ -26,18 +26,13 @@ function App() {
           <Route path="/admin/userlist" component={UserListPage} />
           <Route path="/admin/user/:id/edit" component={UserEditPage} />
           <Route path="/admin/problemlist" component={ProblemListPage} />
-          <Route
-            path="/admin/problemlist/:pageNumber"
-            component={ProblemListPage}
-          />
           <Route path="/admin/problem/:id/edit" component={ProblemEditPage} />
-          <Route path="/page/:pagenumber" component={HomePage} />
           <Route path="/" component={HomePage} exact />
         </Container>
       </main>
       <Footer />
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
